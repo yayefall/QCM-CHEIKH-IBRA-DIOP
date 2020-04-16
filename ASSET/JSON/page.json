@@ -1,0 +1,21 @@
+[
+    
+    {
+        "prenom":"Mame lamp",
+        "nom":"diop",
+        "login":"lamp",
+        "password":"1234567",
+        "avatar":"profil.jpeg",
+        "role":"admin"
+    },
+    {
+        "prenom":"Cheikh ibra",
+        "nom":"diop",
+        "login":"cheikh",
+        "password":"123456",
+        "avatar":"profi2.jpeg",
+        "role":"joueur"
+    }
+
+
+]
