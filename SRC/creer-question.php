@@ -1,117 +1,198 @@
-<?php
-session_start();
-if (empty($_SESSION['admin'])) {
-    header('location:../index.php');
-    exit();//bloquer tout
-}
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CREER DES QUESTIONS</title>
-    <link rel="stylesheet" href="../ASSET/CSS/creer-question.css">
-</head>
-<body>
+
+
+<style> span {color:red;font-size:10px; }</style>
+     
+     <div class="body"> 
+            <div style="color:rgba(0, 128, 122, 0.774); text-align:center"><h1>PARAMETRER VOTRE QUESTION</h1></div>
+            <div class="creer-question">
+                 <form action="" method="POST" ><br>
+                     <label for=""><strong>Question </strong></label>
+                 <textarea name="question" id="question" cols="60" rows="5" style="border-radius:2px"></textarea><br><br>
+                     <span id="question_error"></span><br>
+                     <label for=""> <strong> Nbre de points</strong> </label>
+                     <select style="width:50px;height:30px" name="point"  id="point">
+                         <option > </option>
+                         <option > 1</option>
+                         <option >1.5</option>
+                         <option >2</option>
+                         <option >3</option>
+                         <option >3.5</option>
+                     </select> <br><br>                               
+                     <span id="point_error"></span>
+                     <label for=""> <strong>Type de réponse</strong></label>
+                     <select style="width:370px;height:40px" name="reponse" id="reponse">
+                         <option> </option>
+                         <option>Donner le type de réponse</option>
+                         <option >Choix multiple avec une seule bonne réponse</option>  
+                         <option > Choix multiple avec plusieurs réponses</option>  
+                         <option >Réponse texte à saisir</option>   
+                     </select>  <br><br>
+                     <span id="reponse_error"></span> 
+                    
+                     <div id="inputs"> 
+                         <div class="row" id="row">
+                     <label for=""><strong> Nbre réponse </strong> </label>
+                     <input type="text" name="repond"  id="repond" style= height:35px;width:280px >                   
+                     <button style="position:absolute; padding:0px ;margin:5px 0 0 5px"  onclick="onAddInput()"><img src="../ASSET/IMG/ic-ajout-réponse.png" alt="" ></button><br>
+                     <span id="repond_error"></span>
+                          </div>
+                     </div><br>
+
+                     <!--<input type="checkbox" name="chekbox" id="chekbox" style="height:25px;width:25px">
+                     <span id="chekbox"></span>
+                     <input type="radio" name=" radio" id="radios"  style="height:25px;width:25px;">
+                     <span id="ratios"></span>
+                     <button class="supprime"><img style="width:20px,height:20px" src="../ASSET/IMG/ic-supprimer.png" alt=""></button>  -->
+                     <input class="button" type="submit" value="Enrégistrer" name="valider" id="validation">
+
+          </div><!-- fin div creer question-->
+      </div><!-- fin div bady-->
+
+      </form>
+
+<script>
+
+
+
+
+var question=document.getElementById('question');
+var question_error=document.getElementById('question_error');
+var regex_question=/^[A-Z][^.;!:]+[.!:?]$/;
+
+var point=document.getElementById('point');
+var point_error=document.getElementById('point_error');
+
+
+var reponse =document.getElementById('reponse');
+var reponse_error=document.getElementById('reponse_error');
+
+
+var genere_error=document.getElementById('genere_error');
+
+var repond=document.getElementById('repond');
+var repond_error=document.getElementById('repond_error');
+var regex_repond=/^[0-9]$/;
+
+var validation= document.getElementById('validation');
+validation.addEventListener('click',enregistrer);
+
+
+function enregistrer(e){
+if (question.value=="")
+    {
+       e.preventDefault();
+       question.style.border=" solid 1px red";
+
+    }else if(regex_question.test(question.value)==false)
+      {
+         e.preventDefault();
+         question_error.innerHTML="Format incorrecte";
+
+      }else{}
+
+
+ if (point.value=="")
+    {
+       e.preventDefault();
+       point.style.border=" solid 1px red";
     
-<div class="general">
-    <div><img src="../ASSET/IMG/logo-QuizzSA.png" alt="" style="width: 70px; height: 90px;"> <div>
-    <div style="color:white; margin-top:-130px; text-align:center; font-size:30px"><h1>Le plaisir de jouer</h1></div></div>
-</div>  <!-- fin div general-->
-
-<div class="partiel"><br>
-        <div class="maket">
-              <div class="login">
-                    <div class="creer"><h2 style="color:white;font-size:20px" >CREER ET PARAMETRER VOS QUIZZ</h2></div>
-                    <div class="echap"> <a href="deconnexion-admin.php"><input type="submit" name="bouton" value="Deconnexion" 
-                    style=" font-size: 20px; color:white;background:rgb(0, 128, 122, 0.349);"> </a></div>
-              </div><!-- fin login-->
-              <div class="nene">
-                        <div class="nono"><br> <br><div class="dada"><img src="<?php echo $_SESSION["admin"]["avatar"]  ?>" alt=""></div>
-                         <div class="dodo"><?php echo $_SESSION['admin']['prenom']; ?> <br> <?php echo $_SESSION['admin']['nom']; ?> </div>
-                        </div><br><!-- fin nene-->
-                        <div class="nana">
-                            <div style= > Liste des Questions</div>
-                            <div class="nina"><a href="liste-question.php"><img src="../ASSET/IMG/ic-liste.png" alt=""></a> </div>
-                        </div><br><br><!--fin nana -->
-                        <div class="nana1">
-                            <div style="height:60px; width:5px;flaot:left"></div>
-                            <div class=" cree1"> Creer Admin</div>
-                            <div class="nina1"> <a href="creer-admin.php"><img src="../ASSET/IMG/ic-ajout.png" alt=""></a></div></div><br><br><br><br><br>
-                        <div class="nana2">
-                            <div style= > Liste des joueurs</div>
-                            <div class="nina2"><a href="liste-joueur.php"> <img src="../ASSET/IMG/ic-liste.png" alt=""></a> </div></div><br><br> <br>  
-
-                        <div class="nana3">
-                            <div style= > Creer des Questions</div>
-                            <div class="nina3"> <a href="creer-question.php"> <img src="../ASSET/IMG/ic-ajout-active.png" alt=""></a></div></div><br>     
-                        <div class="body"> 
-                             <div style="color:rgba(0, 128, 122, 0.774); text-align:center"><h1>PARAMETRER VOTRE QUESTION</h1></div>
-                             <div class="creer-question">
-                             <form action="" method="POST">
-                                <table>
-                                <tr>
-                                    <td>
-                                    <strong>  Question</strong>  
-                                    </td>
-                                    <td>
-                                    <textarea name="question" id="" cols="50" rows="4" style="border-radius:2px"></textarea>
-                                    </td>
-                                </tr><br><br>
-                                <tr>
-                                    <td>
-                                    <strong> Nbre de points</strong>  
-                                    </td>
-                            
-                                    <td>
-                                    <select style="width:50px;height:30px" >
-                                        
-                                    </select>
-                                    </td>
-                                </tr><br><br>
-                                <tr>
-                                    <td>
-                                    <strong>type de réponse</strong>  
-                                    </td>
-                            
-                                    <td>
-                                    <select style="width:250px;height:40px">
-                                        <option  style=>donner le type de réponse</option>
-                                    </select>
-                                    <strong><a href="#" ><img src="../ASSET/IMG/ic-ajout.png" alt="" ></a></strong>
-                                    </td>
-                                    
-                                </tr><br><br>
-                                <td>
-                                    <strong> Réponse 1 </strong>  
-                                    </td>
-                                    <td>
-                                   <input type="text" name="repons" style= height:35px;width:245px >
-                                   <input type="checkbox" name="" id="" style="height:30px;width:30px">
-                                   <input type="radio"style="height:30px;width:30px;">
-                                   <a href="#"><img src="../ASSET/IMG/ic-supprimer.png" alt=""></a>
-                                    </td>
-                                </tr><br>
-                                <tr>
-
-                                    <td>
-                                        <input class="button" type="button" value="Enrégistrer" >
-                                    </td>
-                                </tr>
+    }else{}
 
 
-                                
-                                </table>
-                             </form>
-                             </div><!-- fin div creer question-->
-                        </div><!-- fin div bady-->
-               </div><!-- fin div nene-->
-         </div><!--fin div market-->
-</div><!-- fin div partiel-->  
-
-       
+ if(reponse.value=="")
+        {
+            e.preventDefault();
+            reponse.style.border="solid 1px red";
+        }else{}
 
 
-</body>
-</html>
+if(repond.value=="")
+   {
+       e.preventDefault();
+       repond.style.border="solid 1px red";
+
+   }else if(regex_repond.test(repond.value)==false)
+     {
+       e.preventDefault();
+       repond_error.innerHTML="Format incorrecte";
+     }else{}
+
+
+
+     function onAddInput()
+
+    {
+    var divInput=document.getElementById('inputs');
+    var newInput=document.createElement('div');
+    
+    newInput.innerHTML='<input type="text" name="requette" id="" > <input type="checkbox" name="chekbox" id="" ><br> <input type="text" name=" radio" id="" ><input type="radio" name=" radio" id="" >';
+    divInputs.appendChild(newInput);
+    
+    
+    
+    }
+
+
+
+ 
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -27,8 +27,10 @@ if (isset($_POST['bouton']))
                     {
                       $_SESSION['admin']=$value;// enregistrement des donnees de l'admin dans une variable session pour la 
                             //page creation compte admin
-                        header('location:./SRC/liste-joueur.php');
-                    }else
+                        header('location:./SRC/menu.php?A=liste-question');
+                    }else 
+                        
+                    
                     {
                         $_SESSION['joueur']=$value;//enregistrement des donnees du joueur dans une variable session pour la 
                         //page liste joueur
@@ -88,7 +90,7 @@ if (isset($_POST['bouton']))
                             </div><!-- fin suite1-->
                     </div><!--fin leader-->
                     <input type="submit" name="bouton" value=" CONNEXION"  class="bouton"> 
-                    <a href="./SRC/creation-compte-user.php"  style="font-size:25px ; margin:30px;" >S'inscrire pour jouer</a>
+                    <a href="./SRC/creation-compte-user.php?page=joueur"  style="font-size:25px ; margin:30px;" >S'inscrire pour jouer</a>
                 </form>
         </div><!-- fin div market-->
 

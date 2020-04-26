@@ -137,30 +137,4 @@ margin: -45px 9px ;
             
                     }
 
-.doudou{    
-    height: 510px;
-    width: 680px;
-    border: rgb(0, 0, 0, 0.400) solid 1px;
-    float: right;
-    margin: -550px 40px 50px;
-    border-radius: 10px;
-    background-color: #f8fdfd;
-    
-}
-.profil{  
-    height: 140px;
-    width: 140px;
-    border: black solid 1px;
-    margin: -185px 74px;
-    border-radius: 50%;
-    float: right;
-
-  }
-  
-  .profil img{
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-    
-  }
   

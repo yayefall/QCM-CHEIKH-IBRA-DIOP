@@ -1,64 +1,116 @@
-<?php
-session_start();
-if (empty($_SESSION['admin'])) {
-    header('location:../index.php');
-    exit();//bloquer tout
-}
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LISTE DES  JOUEURS</title>
-    <link rel="stylesheet" href="../ASSET/CSS/liste-joueur.css">
-</head>
-<body>
-    
-<div class="general">
-    <div><img src="../ASSET/IMG/logo-QuizzSA.png" alt="" style="width: 70px; height: 90px;"> <div>
-    <div style="color:white; margin-top:-130px; text-align:center; font-size:30px"><h1>Le plaisir de jouer</h1></div></div>
-</div>  <!-- fin div general-->
-
-<div class="partiel"><br>
-        <div class="maket">
-              <div class="login">
-                    <div class="creer"><h2 style="color:white;font-size:20px" >CREER ET PARAMETRER VOS QUIZZ</h2></div>
-                    <div class="echap"><a href="deconnexion-admin.php"> <input type="submit" name="bouton" value="Deconnexion" 
-                    style=" font-size: 20px; color:white;background:rgb(0, 128, 122, 0.349);"></a> </div>
-              </div><!-- fin login-->
-              <div class="nene">
-                        <div class="nono"><br> <br><div class="dada"><img src="<?php echo $_SESSION["admin"]["avatar"]  ?>" alt=""></div>
-                         <div class="dodo"><?php echo $_SESSION['admin']['prenom']; ?> <br> <?php echo $_SESSION['admin']['nom']; ?> </div>
-                        </div><br><!-- fin nono-->
-                        <div class="nana">
-                            <div style= > Liste des Questions</div>
-                            <div class="nina"> <a href="liste-question.php"><img src="../ASSET/IMG/ic-liste.png" alt=""></a> </div>
-                        </div><br><br><!--fin nana -->
-                        <div class="nana1">
-                            <div style="height:60px; width:5px;flaot:left"></div>
-                            <div class=" cree1"> Creer Admin</div>
-                            <div class="nina1"> <a href="creer-admin.php"><img src="../ASSET/IMG/ic-ajout.png" alt=""></a></div></div><br><br><br><br><br>
-                        <div class="nana2">
-                            <div style= > Liste des joueurs</div>
-                            <div class="nina2"><a href="liste-joueur.php"> <img src="../ASSET/IMG/ic-liste-active.png" alt=""></a> </div></div><br><br> <br>  
-
-                        <div class="nana3">
-                            <div style= > Creer des Questions</div>
-                            <div class="nina3"> <a href="creer-question.php"> <img src="../ASSET/IMG/ic-ajout.png" alt=""></a></div></div><br>     
-                       
-               </div><!-- fin div nene-->
-               <div class="body"> 
+         <div class="body">
+               
                    <h1 style="font-size: 40px; color:rgba(0, 0, 0, 0.400);text-align:center">Liste des joueurs par scores</h1><br>
-                   <div class="liste-joueur"></div><br>
-                   <input type="button" name=" button" value=" suivant"style="margin:10px 400px; background-color: rgba(0, 128, 122, 0.774);color:white ">
+                   <div class="liste-joueur">
+                       
+<?php
 
+
+$fichier="../ASSET/JSON/joueur.json";
+$js=file_get_contents($fichier);
+$json=json_decode($js,true);
+
+     
+$tab=[];
+foreach ($json as $value) 
+{ 
+   $tab[]=array
+   (
+       "nom"=>$value["nom"],
+       "prenom"=>$value["prenom"],
+       "score"=>$value["score"],
+
+     );
+
+}
+        
+$colonne=array_column($tab,"score");
+array_multisort($colonne,SORT_DESC,$tab);
+
+$Nbre_joueur_par_page=3;// nombre de joueur par page
+$Nbre_total_joueur=count($tab); //nombre total de joueur
+// on calcule le nombre total de page et la fonction ceil arrondti le nombre par l'entier supérieur
+$Nbre_de_page=ceil($Nbre_total_joueur/$Nbre_joueur_par_page);
+ 
+if(isset($_GET['page']) && is_numeric($_GET['page']))
+  {//on vérifie léexistance de la page et si la valeur de la page est un nombre
+
+      $Num_de_page=$_GET['page'];// on rcupere les donnees de $_get [page]
+
+  }else
+    {
+        $Num_de_page=1; //le num de la 1ere page = 1
+    }
+     if($Num_de_page < 1) //si le num de la 1ere page < 1 on revient toujours sur la 1ere page
+      {
+        $Num_de_page = 1;
+    // si le num de page > nbre de page on revient tjours sur le nbre de page cad le num de la derniere page
+      }else if($Num_de_page > $Nbre_de_page)
+        {
+           $Num_de_page= $Nbre_de_page;
+        } 
+
+        //$indiceDebut=($Num_de_page - 1) * $Nbre_joueur_par_page;
+        //$indiceFin=$Num_de_page *$Nbre_joueur_par_page - 1;
+ if(isset($_GET['page'])) {
+
+    echo "<table>";
+    echo '<td><strong> Nom </strong></td><td><strong>Prenom </strong></td> <td><strong> Score</strong> </td>';
+    /*foreach($tab as $value){
+    echo"<tr>";
+
+        echo '<td>  <br>'.$value["nom"].'</td>';
+        echo '<td>  <br>'.$value["prenom"].'</td>';
+        echo '<td>   <br>'.$value["score"].'</td>' ;
+
+        echo"</tr>";
+        
+    }
+    echo"</table>";
+    */
+    $max=$_GET['page']*3;//numero de page
+    $min=$max-3;
+    for ($i=$min; $i <$max; $i++) { 
+            echo"<tr>";
+            if (array_key_exists($i,$tab)) {
+            
+        
+            echo "<td> <br>".$tab[$i]["nom"]."</td>";
+            echo "<td> <br>".$tab[$i]["prenom"]."</td>";
+            echo "<td> <br>".$tab[$i]["score"]."pts</td>";
+
+        }
+            
+            echo"</tr>";
+
+    }
+    echo"</table>";
+}
+
+  ?>
+
+    </div>
+                 
+                 
+                 
+<?php  
+if(isset($_GET['page'])) {
+
+    $boutons=$_GET['page']-1;
+    echo"<a href='menu.php?A=liste-joueur&page=$boutons'><button class='bouton'> Precedent</button> </a>"; 
+    // on parcourit avec un boucle for le nombre de page
+    for ($i=1; $i <= $Nbre_de_page ; $i++) { 
+        //on affiche le nombre de page avec un lien href
+    echo"<a href='menu.php?A=liste-joueur&page=$i'>$i</a>";
+        
+    }
+    $bouton=$_GET['page']+1;
+    echo"<a href='menu.php?A=liste-joueur&page=$bouton'><button class='bouton'> Suivant</button> </a>"; 
+}
+
+
+?>
+
+
+                
                </div><!-- fin div body-->
-         </div><!--fin div market-->
-</div><!-- fin div partiel-->  
-
-       
-
-
-</body>
-</html>

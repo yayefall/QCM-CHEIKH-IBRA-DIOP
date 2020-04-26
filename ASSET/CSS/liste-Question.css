@@ -70,6 +70,7 @@
 
           .dada img{
             width: 100%;
+            height: 100%;
             border-radius: 70px;
           }
 
@@ -146,7 +147,7 @@
                     height: 500px;
                     width: 680px;
                     float: left;
-                    margin: -466px 537px 50px;
+                    margin: -560px 570px 50px;
                     background-color: #f8fdfd;
                     border-radius: 20px;
 
@@ -155,18 +156,36 @@
                         text-align: center;
                         width: 600px;
                         height: 80px;
-                        border: solid 1px black ;
+                        
                         font-size: 30px;
                         margin: 20px;
                         color: rgba(0, 0, 0, 0.459);
                        }
                        .liste-question{
                         border: solid 1px rgba(0, 128, 122, 0.774);
-                        height: 300px;
-                        width: 500px;
-                        margin: auto;
-                        border-radius: 10px;
+                        height: 350px;
+                        width: 590px;
+                        margin: -40px 0px 0px 43px ;
+                        border-radius: 5px;
                        }
-                         
-                         
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
                 
