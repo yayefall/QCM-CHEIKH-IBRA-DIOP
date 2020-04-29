@@ -1,9 +1,123 @@
+<?php
+if(isset($_POST)){
+    if(!empty($_POST['question']) && !empty($_POST['reponse']) && ($_POST['reponse']=="texte")&& !empty($_POST['point']) && !empty($_POST['requette2']))
+    {
 
+
+
+        
+        var_dump($_POST);
+        $fichier="../ASSET/JSON/question.json";
+        $js=file_get_contents($fichier);
+        $json=json_decode($js,true);
+
+        $question=$_POST['question'];
+        $point=$_POST['point'];
+        $reponse=$_POST['reponse'];
+        $requette=$_POST['requette2'];
+        
+        $creer_question=[
+            
+                "question" => " $question",
+                "point" =>  "$point",
+                "reponse" =>  " $reponse",
+                "requette"=>"$requette",
+        ];
+       
+        $json[]=$creer_question;
+        $encode=json_encode($json);
+        file_put_contents($fichier,$encode);
+   
+   
+    }
+    /**else
+    {
+     echo"<p style='color:red'><strong> Tous les champs sont obligatoirs.</strong></p>";
+    }**/
+
+
+       if(isset($_POST['reponse']) &&( $_POST['reponse']=="multiple"))
+        {
+            $fichier="../ASSET/JSON/question.json";
+            $js=file_get_contents($fichier);
+            $json=json_decode($js,true);
+
+            $question=$_POST['question'];
+            $point=$_POST['point'];
+            $reponse=$_POST['reponse'];
+        
+            
+            $creer_question=[
+                
+                    "question" => " $question",
+                    "point" =>  "$point",
+                    "reponse" =>  " $reponse",
+                    
+            ];
+
+            
+            for ($i=1; $i <= 10 ; $i++) { 
+                if(isset( $_POST["requette$i"] ))
+                    {
+                        $creer_question["rep$i"]= $_POST["requette$i"];
+                        
+                    }
+                
+               
+
+            }
+  
+            $json[]=$creer_question;
+            $encode=json_encode($json);
+            file_put_contents($fichier,$encode);
+           
+        }
+        
+       if(isset($_POST['reponse']) && ($_POST['reponse']=="simple"))
+       {
+           $fichier="../ASSET/JSON/question.json";
+           $js=file_get_contents($fichier);
+           $json=json_decode($js,true);
+
+           $question=$_POST['question'];
+           $point=$_POST['point'];
+           $reponse=$_POST['reponse'];
+       
+           
+           $creer_question=[
+               
+                   "question" => " $question",
+                   "point" =>  "$point",
+                   "reponse" =>  " $reponse",
+                   
+           ];
+
+           
+           for ($i=1; $i <= 10 ; $i++) { 
+               if(isset( $_POST["requette$i"] ))
+                   {
+                       $creer_question["rep$i"]= $_POST["requette$i"];
+                       
+                   }
+               
+
+           }
+ 
+           $json[]=$creer_question;
+           $encode=json_encode($json);
+           file_put_contents($fichier,$encode);
+          
+       }
+
+
+ } 
+
+?>
 
 <style> span {color:red;font-size:10px; }</style>
      
      <div class="body"> 
-            <div style="color:rgba(0, 128, 122, 0.774); text-align:center"><h1>PARAMETRER VOTRE QUESTION</h1></div>
+            <div style="color:rgba(0, 128, 122, 0.774); text-align:center"><h2>PARAMETRER VOTRE QUESTION</h2></div>
             <div class="creer-question">
                  <form action="" method="POST" ><br>
                      <label for=""><strong>Question </strong></label>
@@ -17,42 +131,116 @@
                          <option >2</option>
                          <option >3</option>
                          <option >3.5</option>
-                     </select> <br><br>                               
+                    </select> <br><br>                               
                      <span id="point_error"></span>
-                     <label for=""> <strong>Type de réponse</strong></label>
-                     <select style="width:370px;height:40px" name="reponse" id="reponse">
-                         <option> </option>
-                         <option>Donner le type de réponse</option>
-                         <option >Choix multiple avec une seule bonne réponse</option>  
-                         <option > Choix multiple avec plusieurs réponses</option>  
-                         <option >Réponse texte à saisir</option>   
-                     </select>  <br><br>
-                     <span id="reponse_error"></span> 
-                    
-                     <div id="inputs"> 
-                         <div class="row" id="row">
-                     <label for=""><strong> Nbre réponse </strong> </label>
-                     <input type="text" name="repond"  id="repond" style= height:35px;width:280px >                   
-                     <button style="position:absolute; padding:0px ;margin:5px 0 0 5px"  onclick="onAddInput()"><img src="../ASSET/IMG/ic-ajout-réponse.png" alt="" ></button><br>
-                     <span id="repond_error"></span>
-                          </div>
-                     </div><br>
 
-                     <!--<input type="checkbox" name="chekbox" id="chekbox" style="height:25px;width:25px">
-                     <span id="chekbox"></span>
-                     <input type="radio" name=" radio" id="radios"  style="height:25px;width:25px;">
-                     <span id="ratios"></span>
-                     <button class="supprime"><img style="width:20px,height:20px" src="../ASSET/IMG/ic-supprimer.png" alt=""></button>  -->
-                     <input class="button" type="submit" value="Enrégistrer" name="valider" id="validation">
+
+                 <div class="row" id="row_0">
+                     <label for=""> <strong>Type de réponse</strong></label>
+                     <select style="width:300px;height:40px" name="reponse" id="reponse">
+                         <option value=""></option>
+                         <option>Donner le type de réponse</option>
+                         <option   value="simple">Choix simple</option>  
+                         <option  value="multiple" > Choix multiple</option>  
+                         <option value="texte">Réponse texte </option>   
+                     </select>  
+                     <span id="reponse_error"></span> 
+                     <button type="button"  id=" bouton" style="position:absolute; padding:0px ;margin:5px 0 0 5px"  onclick="onAddInput()" >
+                     <img src="../ASSET/IMG/ic-ajout-réponse.png" alt="" ><br>
+                </div>
+                <div id="inputs" label="nobre_0"> 
+
+            </div>
+            <input class="button" type="submit" value="Enrégistrer" name="valider" id="validation">
 
           </div><!-- fin div creer question-->
       </div><!-- fin div bady-->
-
+    
       </form>
 
 <script>
+    
+var nbreLigne= 0 ;
+function onAddInput()
+{
+    nbreLigne++;
+
+    var divInput=document.getElementById('inputs');
+
+    var newInput=document.createElement('div');
+
+    newInput.setAttribute('class','row');
+
+    newInput.setAttribute('id','row_'+nbreLigne);
+
+    newInput.style.marginTop="5px";
+ 
+ 
+  if(reponse.value=="multiple"){
+    
+    var tot=document.getElementById('inputs').childNodes.length;
+    tot-=1;
+   if(tot==0){
+    tot=1;
+    }else{
+   tot++;
+   }
+  
+    newInput.innerHTML=`<strong style="font-size: 22px;">Réponse ${nbreLigne} </strong>
+   <input type="text" name="requette`+tot+`" style=" height:35px;width:280px" >
+   <input type="checkbox" name="chekbox" id="" >
+   <button type="button" onclick="onDeleteInput(${nbreLigne})" style=" padding:0px"><img style="width:20px,height:20px" src="../ASSET/IMG/ic-supprimer.png" alt=""></button> 
+
+  `;
+
+   divInput.appendChild(newInput);
+
+    } else if(reponse.value=="simple"){
+        
+        var tot=document.getElementById('inputs').childNodes.length;
+        tot-=1;
+    if(tot==0){
+        tot=1; 
+    }else{
+    tot++;
+    }
+    
+    newInput.innerHTML=` <strong style="font-size: 22px;">Réponse ${nbreLigne} </strong>
+    <input type="text" name="requette`+tot+`" style=" height:35px;width:280px" >
+    <input type="radio" name="radio" id="" >
+    <button type="button" onclick="onDeleteInput(${nbreLigne})" style=" padding:0px"><img style="width:20px,height:20px" src="../ASSET/IMG/ic-supprimer.png" alt=""></button> 
+
+    `;
+    
+      divInput.appendChild(newInput);
 
 
+     }else if(reponse.value=="texte") {
+        
+        //var bouton=document.getElementById("bouton");
+        //bouton.disabled==true;
+
+       newInput.innerHTML=` <strong style="font-size: 22px;">Réponse texte</strong>
+       <input type="text" name="requette2" id="requette2" style=" height:40px;width:280px"  >
+       <button type="button" onclick="onDeleteInput(${nbreLigne})" style=" padding:0px"><img style="width:20px,height:20px" src="../ASSET/IMG/ic-supprimer.png" alt=""></button> 
+   
+      `;
+
+    divInput.appendChild(newInput);
+
+
+      }else{}
+
+
+}
+ function onDeleteInput(n)
+ {
+
+    var target=document.getElementById('row_'+n);
+    target.remove();
+    
+
+ }
 
 
 var question=document.getElementById('question');
@@ -65,13 +253,6 @@ var point_error=document.getElementById('point_error');
 
 var reponse =document.getElementById('reponse');
 var reponse_error=document.getElementById('reponse_error');
-
-
-var genere_error=document.getElementById('genere_error');
-
-var repond=document.getElementById('repond');
-var repond_error=document.getElementById('repond_error');
-var regex_repond=/^[0-9]$/;
 
 var validation= document.getElementById('validation');
 validation.addEventListener('click',enregistrer);
@@ -106,53 +287,9 @@ if (question.value=="")
         }else{}
 
 
-if(repond.value=="")
-   {
-       e.preventDefault();
-       repond.style.border="solid 1px red";
-
-   }else if(regex_repond.test(repond.value)==false)
-     {
-       e.preventDefault();
-       repond_error.innerHTML="Format incorrecte";
-     }else{}
-
-
-
-     function onAddInput()
-
-    {
-    var divInput=document.getElementById('inputs');
-    var newInput=document.createElement('div');
-    
-    newInput.innerHTML='<input type="text" name="requette" id="" > <input type="checkbox" name="chekbox" id="" ><br> <input type="text" name=" radio" id="" ><input type="radio" name=" radio" id="" >';
-    divInputs.appendChild(newInput);
-    
-    
-    
-    }
-
-
-
- 
-
-
-
-
-
-
 
 
 }
-
-
-
-
-
-
-
-
-
 
 
 

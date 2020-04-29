@@ -156,7 +156,7 @@
                        }
                        
                     .creer-question{
-                        border: solid 1px rgba(0, 128, 122, 0.774);
+                        
                         height: 400px;
                         width: 600px;
                         margin: auto;
@@ -168,16 +168,16 @@
                         width:100px ;
                         background-color:rgba(0, 128, 122, 0.774);
                         border-radius: 5px;
-                         float: right;
-                         margin: 30px 40px;
-                         
+                        float: right;
                        }
-                        .supprime{
+
+                    .supprime{
                           height:30px;
                           width: 30px;
                           
 
                         }
+
                         label{
                             font-size: 22px;
                         }
@@ -192,5 +192,6 @@
                             background-color: rgba(0, 0, 0, 0.062);
                             border-radius: 5px;
                         }
+                        
                     
                 

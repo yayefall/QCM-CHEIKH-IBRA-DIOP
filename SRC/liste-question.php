@@ -8,64 +8,45 @@
                       </div><!-- fin div nombre-->
                       <div class="liste-question">
                       <?php 
-
- $fichier="../ASSET/JSON/question.json";
- $js=file_get_contents($fichier);
- $json=json_decode($js,true);
-
- var_dump($json);
-
-if(isset($_POST['valider'])){
-    
-    if(!empty($_POST['question']) && !empty($_POST['reponse'])&& !empty($_POST['point']) && !empty($_POST['repond']))
-    
-    {
-
-
-
-        $question=$_POST['question'];
-        $reponse=$_POST['reponse'];
-        $point=$_POST['point'];
-        $repond=$_POST['repond'];
         
-        
-        $creer_question=[
-            
-                "question" => " $question",
-                "point" =>  "$point",
-                "reponse" =>  " $reponse",
-                "repond" => "$repond"
-                
-        
-        ];
-        
-         
-        foreach($creer_question as $value)
-         { 
+        $fichier="../ASSET/JSON/question.json";
+        $js=file_get_contents($fichier);
+        $json=json_decode($js,true);
+        echo "<pre>";
+        print_r($json);
+        echo"</pre>";
+               
+
+                                 //echo' <input type="checkbox" name="chekbox" id="" >';
+                                 //echo' <input type="radio" name="radio" id="" >
+
+                   for ($i=0; $i <count($json) ; $i++) { 
+                        $tab=array_values($json[$i]);
+                        foreach ($tab as $value){
+                                echo $value."<br>";
+                      
+                           if( isset($tab['reponse']) && $tab['reponse']=="multiple")
+                               {
+                                echo' <input type="checkbox" name="checkbox" id="" >';
+                                
+                               } else if( isset($tab['reponse']) && $tab['reponse']=="simple"){
+
+                                echo' <input type="radio" name="radio" id="" >';
+                               }
+                   
+
+                        }     
+                   }
 
 
-        echo"  <br> Question:".$value['question'];
-        echo"  <br> Point:".$value['point'];
-        echo"  <br> Réponse:".$value['reponse'];
-        echo"  <br> Répond:".$value['repond'];
-       }
 
-        $json[]=$creer_question;
-       
-        $encode=json_encode($json);
-        file_put_contents($fichier,$encode);
+                   
 
-
-    }else
-       {
-        echo"<p style='color:red'><strong> Tous les champs sont obligatoirs.</strong></p>";
-       }
-    } 
+          
+               
+               
 
 ?>
-
-
-
                       </div> <!-- fin question --><br>
                               <input type="button" name=" button" value=" suivant"style="margin:10px 400px; background-color: rgba(0, 128, 122, 0.774);color:white ">
                               <div> </div>
