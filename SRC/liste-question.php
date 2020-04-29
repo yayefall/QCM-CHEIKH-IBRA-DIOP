@@ -12,9 +12,9 @@
         $fichier="../ASSET/JSON/question.json";
         $js=file_get_contents($fichier);
         $json=json_decode($js,true);
-        echo "<pre>";
-        print_r($json);
-        echo"</pre>";
+       // echo "<pre>";
+        //print_r($json);
+        //echo"</pre>";
                
 
                                  //echo' <input type="checkbox" name="chekbox" id="" >';
