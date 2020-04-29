@@ -25,7 +25,7 @@
                         foreach ($tab as $value){
                                 echo $value."<br>";
                       
-                           if( isset($tab['reponse']) && $tab['reponse']=="multiple")
+                           if( isset($value['reponse']) && $value['reponse']=="multiple")
                                {
                                 echo' <input type="checkbox" name="checkbox" id="" >';
                                 
