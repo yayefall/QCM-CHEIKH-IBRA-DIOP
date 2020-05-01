@@ -1,1 +1,131 @@
-[{"question":" Qui est babs fall?","point":"1","reponse":" simple","rep1":"ingegneur en batiment","rep2":"expert comptable","rep3":"expert en informatique"},{"question":" Quelles sont les langages web?","point":"2","reponse":" multiple","rep1":"html","rep2":"css","rep3":"comptable"},{"question":" Donner ton avis de la solution du covid19.","point":"3","reponse":" texte","requette":"ton avis"},{"question":" Quelle est la devise du senegal?","point":"1.5","reponse":" simple","rep1":"un peuple, un but ,une fois","rep2":"la d\u00e9mocratie","rep3":"une bonne politique"},{"question":" Qui est le 1er president du s\u00e9n\u00e9gal?","point":"1","reponse":" simple","rep1":"doudou wade","rep2":"abdoulaye wade","rep3":"leopold sedard senghor"},{"question":" Lesquellles des r\u00e9ponses font partie des fonctions du json?","point":"2","reponse":" multiple","rep1":"css","rep2":"json_decode","rep3":"php","rep4":"file_put_contents","rep5":"json_encode","rep6":"javascript"}]
+[
+    {
+        "question": " Qui est babacar fall?",
+        "point": "1",
+        "reponse": " simple",
+        "rep1": "expert informatique",
+        "rep2": "apprenant",
+        "rep3": "macon",
+        "bonneReponse": "1"
+    },
+    {
+        "question": " Quelles sont les langages web?",
+        "point": "2",
+        "reponse": " multiple",
+        "rep1": "PHP",
+        "rep2": "HTML",
+        "rep3": "CSS",
+        "rep4": "XXL",
+        "good": {
+            "ok1": "1",
+            "ok2": "2",
+            "ok3": "3"
+        }
+    },
+    {
+        "question": " Qui a \u00e9t\u00e9 le premiere president du senegal?",
+        "point": "1",
+        "reponse": " simple",
+        "rep1": "doudou wade ",
+        "rep2": "senghor",
+        "rep3": "leopold sedar senghor",
+        "bonneReponse": "3"
+    },
+    {
+        "question": " Y'a t-il une solution pour \u00e9radiquer le covid19?",
+        "point": "3",
+        "reponse": " texte",
+        "ReponseBonne": "oui"
+    },
+    {
+        "question": " Donner le capital du senegal:",
+        "point": "1",
+        "reponse": " simple",
+        "rep1": "fatick",
+        "rep2": "dakar",
+        "rep3": "diourbel",
+        "bonneReponse": "2"
+    },
+    {
+        "question": " Qui est le president actuel du senegal?",
+        "point": "1.5",
+        "reponse": " multiple",
+        "rep1": "senghor",
+        "rep2": "wade",
+        "rep3": "sall",
+        "good": {
+            "ok3": "3"
+        }
+    },
+    {
+        "question": " Qui est le fondateur du Mouridisme?",
+        "point": "3.5",
+        "reponse": " simple",
+        "rep1": "Cheikh Ahmadou Bamba",
+        "rep2": "albouri ndiaye",
+        "rep3": "lat dior diop",
+        "bonneReponse": "1"
+    },
+    {
+        "question": " C'est quoi le covid19?",
+        "point": "1",
+        "reponse": " texte",
+        "ReponseBonne": "c'est un virus transmissible"
+    },
+    {
+        "question": " Quelle est la date l'ind\u00e9pendance du senegal?",
+        "point": "1",
+        "reponse": " simple",
+        "rep1": "1960",
+        "rep2": "1939",
+        "rep3": "1961",
+        "bonneReponse": "1"
+    },
+    {
+        "question": " La premiere capital du s\u00e9n\u00e9gal:",
+        "point": "1",
+        "reponse": " simple",
+        "rep1": "saint louis",
+        "rep2": "dakar",
+        "rep3": "touba",
+        "bonneReponse": "1"
+    },
+    {
+        "question": " La deuxieme capital \u00e9conomique du s\u00e9n\u00e9gal:",
+        "point": "3",
+        "reponse": " simple",
+        "rep1": "dakar",
+        "rep2": "saint loui",
+        "rep3": "touba",
+        "rep4": "fatick",
+        "bonneReponse": "3"
+    },
+    {
+        "question": " Comment s'appelle le khalif g\u00e9n\u00e9ral actuel des lay\u00e9nes?",
+        "point": "3.5",
+        "reponse": " simple",
+        "rep1": "Baye Abdoulahi Thiaw Laye",
+        "rep2": "baye djine thiaw laye",
+        "rep3": "Cheikh mback\u00e9 laye",
+        "rep4": "Cheikh Montakha Mback\u00e9",
+        "bonneReponse": "1"
+    },
+    {
+        "question": " D'ou vient le covid19?",
+        "point": "1",
+        "reponse": " simple",
+        "rep1": "coree",
+        "rep2": "chine",
+        "rep3": "japon",
+        "bonneReponse": "2"
+    },
+    {
+        "question": " C'est quoi un langage web?",
+        "point": "1",
+        "reponse": " texte",
+        "ReponseBonne": "definir le"
+    }
+        
+    
+    
+]

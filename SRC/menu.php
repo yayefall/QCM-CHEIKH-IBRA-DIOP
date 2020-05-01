@@ -42,7 +42,7 @@ if (empty($_SESSION['admin'])) {
                     </div><br><!-- fin nono-->
                         <div class="nana">
                             <div style= > Liste des Questions</div>
-                            <div class="nina"><a href="menu.php?A=liste-question"> <img src="../ASSET/IMG/ic-liste.png" alt=""> </a></div></div><br><br>
+                            <div class="nina"><a href="menu.php?A=liste-question&page=1"> <img src="../ASSET/IMG/ic-liste.png" alt=""> </a></div></div><br><br>
                         <div class="nana1">
                             <div style="height:60px; width:5px;flaot:left"></div>
                             <div class=" cree1"> Creer Admin</div>

@@ -50,24 +50,10 @@ if(isset($_GET['page']) && is_numeric($_GET['page']))
            $Num_de_page= $Nbre_de_page;
         } 
 
-        //$indiceDebut=($Num_de_page - 1) * $Nbre_joueur_par_page;
-        //$indiceFin=$Num_de_page *$Nbre_joueur_par_page - 1;
  if(isset($_GET['page'])) {
 
     echo "<table>";
     echo '<td><strong> Nom </strong></td><td><strong>Prenom </strong></td> <td><strong> Score</strong> </td>';
-    /*foreach($tab as $value){
-    echo"<tr>";
-
-        echo '<td>  <br>'.$value["nom"].'</td>';
-        echo '<td>  <br>'.$value["prenom"].'</td>';
-        echo '<td>   <br>'.$value["score"].'</td>' ;
-
-        echo"</tr>";
-        
-    }
-    echo"</table>";
-    */
     $max=$_GET['page']*3;//numero de page
     $min=$max-3;
     for ($i=$min; $i <$max; $i++) { 

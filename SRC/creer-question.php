@@ -1,12 +1,11 @@
+
 <?php
+
 if(isset($_POST)){
     if(!empty($_POST['question']) && !empty($_POST['reponse']) && ($_POST['reponse']=="texte")&& !empty($_POST['point']) && !empty($_POST['requette2']))
     {
 
-
-
-        
-        var_dump($_POST);
+       
         $fichier="../ASSET/JSON/question.json";
         $js=file_get_contents($fichier);
         $json=json_decode($js,true);
@@ -14,14 +13,14 @@ if(isset($_POST)){
         $question=$_POST['question'];
         $point=$_POST['point'];
         $reponse=$_POST['reponse'];
-        $requette=$_POST['requette2'];
+       $requette=$_POST['requette2'];
         
         $creer_question=[
             
-                "question" => " $question",
+                "question" => "$question",
                 "point" =>  "$point",
-                "reponse" =>  " $reponse",
-                "requette"=>"$requette",
+                "reponse" =>  "$reponse",
+                "ReponseBonne"=>"$requette",
         ];
        
         $json[]=$creer_question;
@@ -36,8 +35,9 @@ if(isset($_POST)){
     }**/
 
 
-       if(isset($_POST['reponse']) &&( $_POST['reponse']=="multiple"))
+       if(isset($_POST['reponse']) &&( $_POST['reponse']=="multiple")) 
         {
+
             $fichier="../ASSET/JSON/question.json";
             $js=file_get_contents($fichier);
             $json=json_decode($js,true);
@@ -45,35 +45,42 @@ if(isset($_POST)){
             $question=$_POST['question'];
             $point=$_POST['point'];
             $reponse=$_POST['reponse'];
+            $BonneReponse=$_POST["BonneReponse$i"];
         
             
             $creer_question=[
                 
-                    "question" => " $question",
+                    "question" => "$question",
                     "point" =>  "$point",
-                    "reponse" =>  " $reponse",
+                    "reponse" =>  "$reponse",
+                    "BonneReponse"=>"$BonneReponse"
                     
             ];
 
             
             for ($i=1; $i <= 10 ; $i++) { 
-                if(isset( $_POST["requette$i"] ))
+                if(isset( $_POST["requette_$i"] ))
                     {
-                        $creer_question["rep$i"]= $_POST["requette$i"];
+                        $creer_question["rep$i"]= $_POST["requette_$i"];
                         
                     }
                 
-               
+                    if(isset( $_POST["BonneReponse$i"] ))
+                    {
+                        $good["ok$i"]= $_POST["BonneReponse$i"];
+                        
+                    }
 
             }
-  
+            $creer_question["good"]=$good;
             $json[]=$creer_question;
+
             $encode=json_encode($json);
             file_put_contents($fichier,$encode);
            
         }
         
-       if(isset($_POST['reponse']) && ($_POST['reponse']=="simple"))
+       if(isset($_POST['reponse']) && ($_POST['reponse']=="simple") )
        {
            $fichier="../ASSET/JSON/question.json";
            $js=file_get_contents($fichier);
@@ -82,27 +89,28 @@ if(isset($_POST)){
            $question=$_POST['question'];
            $point=$_POST['point'];
            $reponse=$_POST['reponse'];
-       
-           
+           $bonneReponse=$_POST['bonneReponse'];
+
            $creer_question=[
                
-                   "question" => " $question",
+                   "question" => "$question",
                    "point" =>  "$point",
-                   "reponse" =>  " $reponse",
+                   "reponse" =>  "$reponse",
+                   
                    
            ];
 
            
            for ($i=1; $i <= 10 ; $i++) { 
-               if(isset( $_POST["requette$i"] ))
+               if(isset( $_POST["requette_$i"]))
                    {
-                       $creer_question["rep$i"]= $_POST["requette$i"];
-                       
+                       $creer_question["rep$i"]= $_POST["requette_$i"];
+                    
                    }
                
 
            }
- 
+           $creer_question["bonneReponse"]= $bonneReponse;
            $json[]=$creer_question;
            $encode=json_encode($json);
            file_put_contents($fichier,$encode);
@@ -110,7 +118,12 @@ if(isset($_POST)){
        }
 
 
- } 
+ } else if (isset($_POST['enregistrer']) && empty($_POST['question']) && empty($_POST['reponse']) && empty($_POST['point']))
+  {
+     
+  echo"<p style='color:red'><strong> Tous les champs sont obligatoirs*!.</strong></p>";
+ 
+ }
 
 ?>
 
@@ -187,8 +200,8 @@ function onAddInput()
    }
   
     newInput.innerHTML=`<strong style="font-size: 22px;">Réponse ${nbreLigne} </strong>
-   <input type="text" name="requette`+tot+`" style=" height:35px;width:280px" >
-   <input type="checkbox" name="chekbox" id="" >
+   <input type="text" name="requette_`+tot+`" style=" height:35px;width:280px" >
+   <input type="checkbox" name="BonneReponse`+tot+`" id="" value='`+tot+`'>
    <button type="button" onclick="onDeleteInput(${nbreLigne})" style=" padding:0px"><img style="width:20px,height:20px" src="../ASSET/IMG/ic-supprimer.png" alt=""></button> 
 
   `;
@@ -206,8 +219,8 @@ function onAddInput()
     }
     
     newInput.innerHTML=` <strong style="font-size: 22px;">Réponse ${nbreLigne} </strong>
-    <input type="text" name="requette`+tot+`" style=" height:35px;width:280px" >
-    <input type="radio" name="radio" id="" >
+    <input type="text" name="requette_`+tot+`" style=" height:35px;width:280px" >
+    <input type="radio" name="bonneReponse" value='`+tot+`'id="" >
     <button type="button" onclick="onDeleteInput(${nbreLigne})" style=" padding:0px"><img style="width:20px,height:20px" src="../ASSET/IMG/ic-supprimer.png" alt=""></button> 
 
     `;
@@ -263,6 +276,7 @@ if (question.value=="")
     {
        e.preventDefault();
        question.style.border=" solid 1px red";
+       question_error.innerHTML="Ce champs est obligatoire*!";
 
     }else if(regex_question.test(question.value)==false)
       {
@@ -276,6 +290,7 @@ if (question.value=="")
     {
        e.preventDefault();
        point.style.border=" solid 1px red";
+       point_error.innerHTML="Ce champs est obligatoire*!";
     
     }else{}
 
@@ -284,6 +299,7 @@ if (question.value=="")
         {
             e.preventDefault();
             reponse.style.border="solid 1px red";
+            reponse_error.innerHTML="Ce champs est obligatoire*!";
         }else{}
 
 
