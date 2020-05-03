@@ -118,12 +118,31 @@ if(isset($_POST)){
        }
 
 
- } else if (isset($_POST['enregistrer']) && empty($_POST['question']) && empty($_POST['reponse']) && empty($_POST['point']))
-  {
+ } else if (isset($_POST['enregistrer']))
+ {
+    if( empty($_POST['question']))
+    {
+      echo "<p style='color:red'><strong> ce champs est obligatoir*!.</strong></p>";
+        
+    }else if( empty($_POST['point']))
+
+       {
+        echo "<p style='color:red'><strong> Ce champs est obligatoir*!.</strong></p>";  
+
+       }else if( empty($_POST['reponse']))
+         {
+            echo "<p style='color:red'><strong> ce champs est obligatoir*!.</strong></p>";
+         }
+          else{}
+ }
+  
+
+
+ /* {
      
   echo"<p style='color:red'><strong> Tous les champs sont obligatoirs*!.</strong></p>";
  
- }
+ }*/
 
 ?>
 
@@ -249,8 +268,8 @@ function onAddInput()
  function onDeleteInput(n)
  {
 
-    var target=document.getElementById('row_'+n);
-    target.remove();
+    var supprime=document.getElementById('row_'+n);
+    supprime.remove();
     
 
  }

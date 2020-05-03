@@ -35,8 +35,84 @@ if (empty($_SESSION['joueur'])) {
               <div class="body">
                      <div class="cadre"><br>
                          <div class="tete_question">
-                             <div class="point"></div>
+                             <?php
+
+                        $fichier="../ASSET/JSON/question.json";
+                        $js=file_get_contents($fichier);
+                        $json=json_decode($js,true);
+                        foreach($json as $value)
+                        {
+                            echo $value["question"];
+                        }
+
+                               ?>
+
+                         <div class="point">
+                                 <?php
+
+
+                          $fichier="../ASSET/JSON/question.json";
+                           $js=file_get_contents($fichier);
+                            $json=json_decode($js,true);
+                                  foreach($json as $value)
+                                    {
+                                      echo $value["point"]."<br>" ;
+                                  }
+
+                            ?>
+                            
+                            
+                            </div>
+
                          </div><!-- fin tete question-->
+                          <?php
+
+ $fichier="../ASSET/JSON/question.json";
+ $js=file_get_contents($fichier);
+ $json=json_decode($js,true);
+/*echo"<pre>";
+print_r($json);
+echo"</pre>";
+
+exit();*/
+if(isset($_POST["reponse"])){
+
+    for($i=3;$i<=count($json);$i++)
+    {
+    //if($json[2]==" multiple")
+       // {
+            echo $json['rep$i']."<br>";
+            echo "<input type='checkbox'  name=''   value=''>";  
+            echo $json[$i];
+        
+       // }
+
+    }
+
+}
+         
+    
+   /* if (isset($_GET['page']) ) {
+            
+            $bouton=$_GET['page']+1;
+            echo"<a href='interface-joueur.php?page=$bouton'><button class='bouton'> Suivant</button> </a>"; 
+    }
+    
+    if(isset($_GET['page']) )
+    {
+            
+         $bouton=$_GET['page']-1;
+         echo"<a href='interface-joueur.php?page=$bouton'><button class='bouton'> Precedent</button> </a>"; 
+     }
+    */
+    
+    
+    ?>
+
+
+
+
+    
                      </div><!-- fin cadre-->
 
                      <div class="score">

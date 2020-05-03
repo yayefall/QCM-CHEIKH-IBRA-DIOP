@@ -2,14 +2,13 @@
     background:rgba(5 , 36,31);
     height: 80px;
     width: 100%;
-    border: red solid 2px;
+    
 }
 
  .partiel{ 
      width: 100%;
      height: 700px;
      margin-top: -30px;
-     border: blue solid 2px;
      background-image: url('../IMG/img-bg.jpg');
 }
 
@@ -25,7 +24,7 @@
 .profil{  
     height: 200px;
     width: 200px;
-    border: black solid 1px;
+    border:white solid 1px;
     margin: -180px 190px;
     border-radius: 50%;
     float: right;

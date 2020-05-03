@@ -105,8 +105,6 @@ if(isset($_GET['page']) )
      echo"<a href='menu.php?A=liste-question&page=$bouton'><button class='bouton'> precedent</button> </a>"; 
  }
 
- 
- 
 
 
 ?>

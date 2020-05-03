@@ -27,7 +27,7 @@ if (isset($_POST['bouton']))
                     {
                       $_SESSION['admin']=$value;// enregistrement des donnees de l'admin dans une variable session pour la 
                             //page creation compte admin
-                        header('location:./SRC/menu.php?A=liste-question');
+                        header('location:./SRC/menu.php?A=liste-question&page=1');
                     }else 
                         
                     
