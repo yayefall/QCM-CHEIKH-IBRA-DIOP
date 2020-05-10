@@ -19,7 +19,6 @@ if($_GET['page']>$_SESSION['nombre']){
 
 
 
-
 ?>
 
 
@@ -41,6 +40,7 @@ if($_GET['page']>$_SESSION['nombre']){
 
     <div class="maket">
               <div class="login">
+                         
                      <div class="cadrefoto"> <div class="photo"><img src="<?php echo $_SESSION["joueur"]["avatar"]  ?>" alt=""></div>
                       <div class="nom"> <?php echo $_SESSION['joueur']['prenom']; ?>  <?php echo $_SESSION['joueur']['nom']; ?></div>
                      </div> <!-- fin cadrefoto-->
@@ -90,7 +90,7 @@ if(isset($_GET['page'])){
                                     echo "<div class='jeux_point'><strong>$tab[1]pts</strong></div>";
                                 }
                                    
-                                    echo "<strong><div class='jeux_reponse'><input type='text'  class='inputs' name='texte' ></div></strong>";     
+                                    echo "<strong><div class='jeux_reponse'><input type='text'  class='inputs' name='reponse' value='' ></div></strong>";     
                                    
                        }
 
@@ -107,7 +107,7 @@ if(isset($_GET['page'])){
                                for ($j=3; $j <count($tab)-1; $j++) { 
                                        $tai=count($tab)-1;
                 
-                                  echo"<strong><div class='jeux_reponse'><input type='radio'  class='inpute' name='bon'   value='$position'>$tab[$j]</div></strong>";  
+                                  echo"<strong><div class='jeux_reponse'><input type='radio'  class='inpute' name='reponse'   value='$position'>$tab[$j]</div></strong>";  
                                    $position++;          
                                }
                              
@@ -124,7 +124,7 @@ if(isset($_GET['page'])){
                                for ($j=3; $j < count($tab)-1; $j++) { 
                                    $tabBonneReponse=$tab[count($tab)-1];
                                   
-                                         echo"<strong><div class='jeux_reponse'><input type='checkbox'class='inpute'  value='$position'name='rep$position'>$tab[$j]</div></strong>";  
+                                         echo"<strong><div class='jeux_reponse'><input type='checkbox'class='inpute'  value='$position'name='reponse[]'>$tab[$j]</div></strong>";  
                                          $position++;                                    
                                 }
 
@@ -186,7 +186,7 @@ if (isset($_GET['page'])){
             {
             
              $bouton=$_GET['page'];
-            echo"<input type='submit' class='bouton'name='ok' value='Terminer'>"; 
+            echo"<input type='submit' class='bouton' name='ok' value='Terminer'>"; 
         }else{}
  
 }
@@ -201,37 +201,31 @@ if (isset($_GET['page'])){
 
 <?php 
   if(isset($_POST["ok"])){
-       
+
+    
+
       if($tab[2]==" simple"){
-          if($_POST["bon"]==$tab[count($tab)-1]){
+
+          if($_POST["reponse"]==$tab[count($tab)-1]){
+
                $_SESSION["score"]=$_SESSION["score"]+$tab[1];
               
             }
-           /*$bonnereponse=$_POST['bon'];
-          if($tab[3]==$bonnereponse){
-            
-            echo $bonnereponse;
-            var_dump($_POST['bon']);
-          }*/
+        
        }
    
-   
  if($tab[2]==" texte"){
-      if($_POST["texte"]==$tab[3]){
+      if($_POST["reponse"]==$tab[3]){
+
            $_SESSION["score"]=$_SESSION["score"]+$tab[1];
 
        }
-       $_SESSION['juste']=$_POST['texte'];
-       if($tab[3]=="ReponseBonne"){
-            
-        $_SESSION['juste'] =$tab[3];
-        var_dump($_SESSION['juste']);
-      }
+      
     }
 
 if($tab[2]==" multiple"){
     $cochet=array_intersect($_POST,$tab[count($tab)-1]);
-    print_r($cochet);
+
     if(count($cochet)==count($tab[count($tab)-1])){
 
         $_SESSION["score"]=$_SESSION["score"]+$tab[1];
@@ -300,7 +294,7 @@ for ($i=0; $i <5; $i++) {
 
     echo '<td>  <br>'.$tab[$i]["nom"].'</td>';
     echo '<td>  <br>'.$tab[$i]["prenom"].'</td>';
-    echo '<td>   <br>'.$tab[$i]["score"].' pts</td>' ;
+    echo '<td>   <br>'.$tab[$i]["score"].' pts</td>';
 
 
 

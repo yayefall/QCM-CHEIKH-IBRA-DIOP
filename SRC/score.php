@@ -5,7 +5,7 @@
 
 <div class="cadre"> 
     <div class="commente"> 
-<h2 style="color:green; text-align:center"> Votre avez terminé avec succés <br><br>Bravo mon champion!!</h2>;
+<h2 style="color:green; text-align:center"> Vous avez terminé avec succés <br><br>Bravo mon champion!!</h2>;
 
     </div>
      <div></div><br><br><br>

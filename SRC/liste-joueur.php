@@ -25,7 +25,7 @@ foreach ($json as $value)
 
      );
     }
-    
+
 }
         
 $colonne=array_column($tab,"score");
@@ -92,12 +92,7 @@ if(isset($_GET['page'])) {
     $boutons=$_GET['page']-1;
     echo"<a href='menu.php?A=liste-joueur&page=$boutons'><button class='bouton'> Precedent</button> </a>"; 
   }else{}
-    // on parcourit avec un boucle for le nombre de page
-   /* for ($i=1; $i <= $Nbre_de_page ; $i++) { 
-        //on affiche le nombre de page avec un lien href
-    echo"<a href='menu.php?A=liste-joueur&page=$i'>$i</a>";
-        
-    }*/
+   
 }
 
 
