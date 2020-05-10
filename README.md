@@ -1,8 +1,7 @@
 # QCM-CHEIKH-IBRA-DIOP
-login joueur :cheikh
-mot de passe joueur:123456
+joueur/joueur
 
 
-login admin:lamp
-mot de passe admin :1234567
+admin/admin
+
  
