@@ -6,7 +6,7 @@
 <?php
 
 
-$fichier="../ASSET/JSON/joueur.json";
+$fichier="../ASSET/JSON/page.json";
 $js=file_get_contents($fichier);
 $json=json_decode($js,true);
 
@@ -14,6 +14,9 @@ $json=json_decode($js,true);
 $tab=[];
 foreach ($json as $value) 
 { 
+  if(isset($value['score'])){
+
+ 
    $tab[]=array
    (
        "nom"=>$value["nom"],
@@ -21,7 +24,8 @@ foreach ($json as $value)
        "score"=>$value["score"],
 
      );
-
+    }
+    
 }
         
 $colonne=array_column($tab,"score");
@@ -54,8 +58,8 @@ if(isset($_GET['page']) && is_numeric($_GET['page']))
 
     echo "<table>";
     echo '<td><strong> Nom </strong></td><td><strong>Prenom </strong></td> <td><strong> Score</strong> </td>';
-    $max=$_GET['page']*3;//numero de page
-    $min=$max-3;
+    $max=$_GET['page']*4;//numero de page
+    $min=$max-4;
     for ($i=$min; $i <$max; $i++) { 
             echo"<tr>";
             if (array_key_exists($i,$tab)) {
@@ -75,28 +79,45 @@ if(isset($_GET['page']) && is_numeric($_GET['page']))
 
   ?>
 
-    </div>
+    </div><!-- fin div body-->
                  
                  
-                 
+    <div  style="float:left;">  
+                   
 <?php  
 if(isset($_GET['page'])) {
 
+  if($_GET['page'] > 1){
+
     $boutons=$_GET['page']-1;
     echo"<a href='menu.php?A=liste-joueur&page=$boutons'><button class='bouton'> Precedent</button> </a>"; 
+  }else{}
     // on parcourit avec un boucle for le nombre de page
-    for ($i=1; $i <= $Nbre_de_page ; $i++) { 
+   /* for ($i=1; $i <= $Nbre_de_page ; $i++) { 
         //on affiche le nombre de page avec un lien href
     echo"<a href='menu.php?A=liste-joueur&page=$i'>$i</a>";
         
-    }
-    $bouton=$_GET['page']+1;
-    echo"<a href='menu.php?A=liste-joueur&page=$bouton'><button class='bouton'> Suivant</button> </a>"; 
+    }*/
 }
 
 
 ?>
 
+</div><!-- fin div left-->
+<div style="float:right;">
 
+<?php
+
+if(isset($_GET['page'])) {
+     if($_GET['page']>=1 && $_GET['page'] < @$Nbre_de_page){
+      $bouton=$_GET['page']+1;
+      echo"<a href='menu.php?A=liste-joueur&page=$bouton'><button class='bouton'> Suivant</button> </a>"; 
+   }else{}
+  
+
+  }
+   
+?>
+</div><!-- fin div right-->
                 
                </div><!-- fin div body-->

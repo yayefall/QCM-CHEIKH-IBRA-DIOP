@@ -1,7 +1,7 @@
 [
     {
         "question": " Qui est babacar fall?",
-        "point": "1",
+        "point": "10",
         "reponse": " simple",
         "rep1": "expert informatique",
         "rep2": "apprenant",
@@ -10,7 +10,7 @@
     },
     {
         "question": " Quelles sont les langages web?",
-        "point": "2",
+        "point": "45",
         "reponse": " multiple",
         "rep1": "PHP",
         "rep2": "HTML",
@@ -24,7 +24,7 @@
     },
     {
         "question": " Qui a \u00e9t\u00e9 le premiere president du senegal?",
-        "point": "1",
+        "point": "30",
         "reponse": " simple",
         "rep1": "doudou wade ",
         "rep2": "senghor",
@@ -33,13 +33,13 @@
     },
     {
         "question": " Y'a t-il une solution pour \u00e9radiquer le covid19?",
-        "point": "3",
+        "point": "10",
         "reponse": " texte",
         "ReponseBonne": "oui"
     },
     {
         "question": " Donner le capital du senegal:",
-        "point": "1",
+        "point": "45",
         "reponse": " simple",
         "rep1": "fatick",
         "rep2": "dakar",
@@ -48,7 +48,7 @@
     },
     {
         "question": " Qui est le president actuel du senegal?",
-        "point": "1.5",
+        "point": "10",
         "reponse": " multiple",
         "rep1": "senghor",
         "rep2": "wade",
@@ -59,7 +59,7 @@
     },
     {
         "question": " Qui est le fondateur du Mouridisme?",
-        "point": "3.5",
+        "point": "45",
         "reponse": " simple",
         "rep1": "Cheikh Ahmadou Bamba",
         "rep2": "albouri ndiaye",
@@ -68,7 +68,7 @@
     },
     {
         "question": " C'est quoi le covid19?",
-        "point": "1",
+        "point": "3",
         "reponse": " texte",
         "ReponseBonne": "c'est un virus transmissible"
     },
@@ -102,7 +102,7 @@
     },
     {
         "question": " Comment s'appelle le khalif g\u00e9n\u00e9ral actuel des lay\u00e9nes?",
-        "point": "3.5",
+        "point": "20",
         "reponse": " simple",
         "rep1": "Baye Abdoulahi Thiaw Laye",
         "rep2": "baye djine thiaw laye",
@@ -112,7 +112,7 @@
     },
     {
         "question": " D'ou vient le covid19?",
-        "point": "1",
+        "point": "5",
         "reponse": " simple",
         "rep1": "coree",
         "rep2": "chine",
@@ -120,12 +120,27 @@
         "bonneReponse": "2"
     },
     {
-        "question": " C'est quoi un langage web?",
-        "point": "1",
+        "question": " C'est quoi un langage de programmation?",
+        "point": "5",
         "reponse": " texte",
-        "ReponseBonne": "definir le"
+        "ReponseBonne": "C'est un mode de communication vous permettant de dialoguer avec une machine en lui soumettant des instructions à exécuter"
+    },
+    {
+        "question": "Ou j'habite?",
+        "point": "30",
+        "reponse": " simple",
+        "rep1": "maroc",
+        "rep2": "senegal",
+        "rep3": "canada",
+        "bonneReponse": "2"
+    },
+    {
+        "question": "Quelle est l'\u00e9cole de codage gratuite au s\u00e9n\u00e9nal?",
+        "point": "16",
+        "reponse": " simple",
+        "rep1": "Sonatel Accademy",
+        "rep2": "Simplon",
+        "rep3": "ESP",
+        "bonneReponse": "1"
     }
-        
-    
-    
 ]

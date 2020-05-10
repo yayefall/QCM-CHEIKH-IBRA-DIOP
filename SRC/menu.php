@@ -21,6 +21,7 @@ if (empty($_SESSION['admin'])) {
     <link rel="stylesheet" href="../ASSET/CSS/creer-question.css">
     <link rel="stylesheet" href="../ASSET/CSS/liste-joueur.css">
     <link rel="stylesheet" href="../ASSET/CSS/compte-admin.css">
+    <link rel="stylesheet" href="../ASSET/CSS/tableau-bord.css">
 </head>
 <body>
    
@@ -46,14 +47,16 @@ if (empty($_SESSION['admin'])) {
                         <div class="nana1">
                             <div style="height:60px; width:5px;flaot:left"></div>
                             <div class=" cree1"> Creer Admin</div>
-                            <div class="nina1"><a href="menu.php?A=creer-admin&page=admin"><img src="../ASSET/IMG/ic-ajout.png" alt=""></a></div></div><br><br><br><br><br>
+                            <div class="nina1"><a href="menu.php?A=creer-admin&page=admin"><img src="../ASSET/IMG/ic-ajout.png" alt=""></a></div></div><br><br><br>
                         <div class="nana2">
                             <div style= > Liste des joueurs</div>
                             <div class="nina2"> <a href="menu.php?A=liste-joueur&page=1"><img src="../ASSET/IMG/ic-liste.png" alt=""> </a></div></div><br><br> <br>  
-
                         <div class="nana3">
                             <div style= > Creer des Questions</div>
-                            <div class="nina3"><a href="menu.php?A=creer-question"> <img src="../ASSET/IMG/ic-ajout.png" alt=""></a> </div></div><br>     
+                            <div class="nina3"><a href="menu.php?A=creer-question"> <img src="../ASSET/IMG/ic-ajout.png" alt=""></a> </div></div><br> <br><br>  
+                        <div class="nana4">
+                            <div> Tableau de bord</div>
+                            <div class="nina4"><a href="menu.php?A=tableau-bord"> <img src="../ASSET/IMG/lamp.jpg" alt="" style="width: 10%;"></a> </div></div><br>    
                </div><!-- fin div nene-->
             <div class="menu"> <br>
              <?php  if(isset($_GET['A'])) {
@@ -76,6 +79,11 @@ if (empty($_SESSION['admin'])) {
 
                  if($_GET['A']=="liste-joueur"){
                     require_once("liste-joueur.php");
+                 }
+
+
+                 if($_GET['A']=="tableau-bord"){
+                    require_once("tableau-bord.php");
                  }
 
 

@@ -34,7 +34,8 @@ if (isset($_POST['bouton']))
                     {
                         $_SESSION['joueur']=$value;//enregistrement des donnees du joueur dans une variable session pour la 
                         //page liste joueur
-                        header('location:./SRC/interface-joueur.php');
+                        
+                        header('location:./SRC/interface-joueur.php?page=1');
                     }
 
                 }

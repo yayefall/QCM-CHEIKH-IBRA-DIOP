@@ -19,7 +19,7 @@ if(isset($_POST)){
             
                 "question" => "$question",
                 "point" =>  "$point",
-                "reponse" =>  "$reponse",
+                "reponse" =>  " $reponse",
                 "ReponseBonne"=>"$requette",
         ];
        
@@ -52,7 +52,7 @@ if(isset($_POST)){
                 
                     "question" => "$question",
                     "point" =>  "$point",
-                    "reponse" =>  "$reponse",
+                    "reponse" =>  " $reponse",
                     "BonneReponse"=>"$BonneReponse"
                     
             ];
@@ -95,7 +95,7 @@ if(isset($_POST)){
                
                    "question" => "$question",
                    "point" =>  "$point",
-                   "reponse" =>  "$reponse",
+                   "reponse" =>  " $reponse",
                    
                    
            ];
@@ -122,6 +122,7 @@ if(isset($_POST)){
  {
     if( empty($_POST['question']))
     {
+
       echo "<p style='color:red'><strong> ce champs est obligatoir*!.</strong></p>";
         
     }else if( empty($_POST['point']))
@@ -138,12 +139,7 @@ if(isset($_POST)){
   
 
 
- /* {
-     
-  echo"<p style='color:red'><strong> Tous les champs sont obligatoirs*!.</strong></p>";
  
- }*/
-
 ?>
 
 <style> span {color:red;font-size:10px; }</style>
@@ -159,10 +155,16 @@ if(isset($_POST)){
                      <select style="width:50px;height:30px" name="point"  id="point">
                          <option > </option>
                          <option > 1</option>
-                         <option >1.5</option>
-                         <option >2</option>
+                         <option >45</option>
+                         <option >30</option>
                          <option >3</option>
-                         <option >3.5</option>
+                         <option >4</option>
+                         <option >5</option>
+                         <option >16</option>
+                         <option >20</option>
+                         <option>10</option>
+                         <option>8</option>
+                         <option >2</option>
                     </select> <br><br>                               
                      <span id="point_error"></span>
 
@@ -228,7 +230,7 @@ function onAddInput()
    divInput.appendChild(newInput);
 
     } else if(reponse.value=="simple"){
-        
+        bouton.disabled(); 
         var tot=document.getElementById('inputs').childNodes.length;
         tot-=1;
     if(tot==0){
@@ -249,8 +251,8 @@ function onAddInput()
 
      }else if(reponse.value=="texte") {
         
-        //var bouton=document.getElementById("bouton");
-        //bouton.disabled==true;
+      //var bouton=document.getElementById("bouton");
+      //bouton.disabled();   
 
        newInput.innerHTML=` <strong style="font-size: 22px;">Réponse texte</strong>
        <input type="text" name="requette2" id="requette2" style=" height:40px;width:280px"  >
@@ -268,8 +270,8 @@ function onAddInput()
  function onDeleteInput(n)
  {
 
-    var supprime=document.getElementById('row_'+n);
-    supprime.remove();
+    var target=document.getElementById('row_'+n);
+    target.remove();
     
 
  }
@@ -300,7 +302,7 @@ if (question.value=="")
     }else if(regex_question.test(question.value)==false)
       {
          e.preventDefault();
-         question_error.innerHTML="Format incorrecte";
+         question_error.innerHTML="Format incorrect";
 
       }else{}
 

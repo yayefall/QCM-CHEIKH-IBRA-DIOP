@@ -89,7 +89,7 @@ if (isset($_POST['compte']))
     
                 file_put_contents($fichier,$newpersonActuel);
 
-                header('location:../SRC/menu.php?A=liste-question');
+                header('location:../SRC/menu.php?A=liste-question&page=1');
         }else
           {
                 echo"<p style='color:red'><strong> Tous les champs sont obligatoirs.</strong></p>";

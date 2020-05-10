@@ -24,7 +24,7 @@
 .profil{  
     height: 200px;
     width: 200px;
-    border:white solid 1px;
+    border:black solid 1px;
     margin: -180px 190px;
     border-radius: 50%;
     float: right;
